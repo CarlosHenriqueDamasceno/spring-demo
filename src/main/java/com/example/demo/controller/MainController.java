@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.PersonInputDto;
+import com.example.demo.dto.PersonOutputDto;
 import com.example.demo.dto.PersonUpdateDto;
 import com.example.demo.entity.Person;
 import com.example.demo.service.PersonService;
@@ -23,8 +25,8 @@ public class MainController {
     }
 
     @PostMapping
-    public void create(@RequestBody Person data) {
-        service.create(data);
+    public PersonOutputDto create(@RequestBody PersonInputDto data) {
+        return service.create(data);
     }
 
     @PutMapping("{id}")

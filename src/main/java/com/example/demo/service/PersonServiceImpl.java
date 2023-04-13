@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.PersonInputDto;
+import com.example.demo.dto.PersonOutputDto;
 import com.example.demo.dto.PersonUpdateDto;
 import com.example.demo.entity.Person;
 import com.example.demo.repository.PersonRepository;
@@ -23,8 +25,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void create(Person data) {
-        repository.save(data);
+    public PersonOutputDto create(PersonInputDto data) {
+        Person entity = new Person();
+        BeanUtils.copyProperties(data, entity);
+        repository.save(entity);
+        return new PersonOutputDto(entity);
     }
 
     @Override
